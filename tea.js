@@ -1,3 +1,7 @@
+$(document).ready(function(){
+setTimeout(function() {
+    $('body').addClass('loaded');
+}, 3500);
 document.onkeydown = function(e){
     switch(e.keyCode){
         case 37:
@@ -10,6 +14,4 @@ document.onkeydown = function(e){
             //Down
     }
 }
-$('body').imagesLoaded( function() {
-  $('#spinner').hide();
 });

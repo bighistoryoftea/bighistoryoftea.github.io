@@ -1,80 +1,132 @@
-var feature;
 
-var projection = d3.geo.azimuthal()
-    .scale(zoom)
-    .origin([-71.03, 42.37])
-    .mode("orthographic")
-    .translate([380, 450]);
+  var width = 600,
+  height = 500,
+  sens = 0.25,
+  focused;
 
-var circle = d3.geo.greatCircle()
-    .origin(projection.origin());
+  //Setting projection
 
-var scale = {
-    orthographic: 380,
-    stereographic: 380,
-    gnomonic: 380,
-    equidistant: 380 / Math.PI * 2,
-    equalarea: 380 / Math.SQRT2
-};
+  var projection = d3.geo.orthographic()
+  .scale(245)
+  .rotate([0, 0])
+  .translate([width / 2, height / 2])
+  .clipAngle(90);
 
-var path = d3.geo.path()
-    .projection(projection);
+  var path = d3.geo.path()
+  .projection(projection);
+
+  //SVG container
+
+  var svg = d3.select("body").append("svg")
+  .attr("width", width)
+  .attr("height", height);
+
+  //Adding water
+
+  svg.append("path")
+  .datum({type: "Sphere"})
+  .attr("class", "water")
+  .attr("d", path)
+  .call(d3.behavior.drag()
+  .origin(function() { var r = projection.rotate(); return {x: r[0] / sens, y: -r[1] / sens}; })
+  .on("drag", function() {
+    var rotate = projection.rotate();
+    projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
+    svg.selectAll("path.land").attr("d", path);
+    svg.selectAll(".focused").classed("focused", focused = false);
+  }));
+
+  var countryTooltip = d3.select("body").append("div").attr("class", "countryTooltip"),
+  countryList = d3.select("body").append("select").attr("name", "countries");
 
 
-var svg = d3.select("#globe").append("svg:svg")
-    .attr("width", 800)
-    .attr("height", 800)
-    .on("dblclick", dblclick)
-    .on("mousedown", mousedown);
+  queue()
+  .defer(d3.json, "world.json")
+  .defer(d3.tsv, "names.tsv")
+  .await(ready);
 
-var g = svg.append("g");
+  //Main function
 
-d3.json("simplified.geojson", function(collection) {
+  function ready(error, world, countryData) {
 
-            g.append("g")
-                .attr("id", "countries")
-            g.append("g")
-                .selectAll("path")
-                .data(collection.features)
-                .enter().append("svg:path")
-                .attr("d", clip)
-                .attr("id", function(d) {
-                    return d.properties.ISO3;
-                })
-                .attr("fill", function(d) {
-                    return d.properties.FILL;
-                }) //change color and make clickable if data on this country exists
-                .on("mouseover", pathOver)
-                .on("mouseout", pathOut)
-                .on("dblclick", dblclick)
-                .on("mousewheel.zoom", null)
-                .on("click", click);
+    var countryById = {},
+    countries = topojson.feature(world, world.objects.countries).features;
 
-            feature = svg.selectAll("path");
+    //Adding countries to select
 
-            feature.append("svg:title")
-                .text(function(d) {
-                    return d.properties.NAME;
-                });
+    countryData.forEach(function(d) {
+      countryById[d.id] = d.name;
+      option = countryList.append("option");
+      option.text(d.name);
+      option.property("value", d.id);
+    });
 
-            //here is where I want to be able to click a country name in the div and have the globe rotate to that country:
+    //Drawing countries on the globe
 
-            $('.represented').click(function() {
-                var countryabbrev = $(this).attr('id');
-                getCentroid(d3.select("#" + countryabbrev));
-                //projection.origin(projection.invert(#path.centroid(#CAN)));
-                projection.origin(getCentroid(d3.select("#" + countryabbrev)));
-                refresh(1500);
-                //showPerson(countryabbrev)
-            });
+    var world = svg.selectAll("path.land")
+    .data(countries)
+    .enter().append("path")
+    .attr("class", "land")
+    .attr("d", path)
 
-            function getCentroid(selection) {
-                // get the DOM element from a D3 selection
-                // you could also use "this" inside .each()
-                var element = selection.node(),
-                    // use the native SVG interface to get the bounding box
-                    bbox = element.getBBox();
-                // return the center of the bounding box
-                return [bbox.x + bbox.width / 2, bbox.y + bbox.height / 2];
-            }
-          }
+    //Drag event
+
+    .call(d3.behavior.drag()
+      .origin(function() { var r = projection.rotate(); return {x: r[0] / sens, y: -r[1] / sens}; })
+      .on("drag", function() {
+        var rotate = projection.rotate();
+        projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
+        svg.selectAll("path.land").attr("d", path);
+        svg.selectAll(".focused").classed("focused", focused = false);
+      }))
+
+    //Mouse events
+
+    .on("mouseover", function(d) {
+      countryTooltip.text(countryById[d.id])
+      .style("left", (d3.event.pageX + 7) + "px")
+      .style("top", (d3.event.pageY - 15) + "px")
+      .style("display", "block")
+      .style("opacity", 1);
+    })
+    .on("mouseout", function(d) {
+      countryTooltip.style("opacity", 0)
+      .style("display", "none");
+    })
+    .on("mousemove", function(d) {
+      countryTooltip.style("left", (d3.event.pageX + 7) + "px")
+      .style("top", (d3.event.pageY - 15) + "px");
+    });
+
+    //Country focus on option select
+
+    d3.select("select").on("change", function() {
+      var rotate = projection.rotate(),
+      focusedCountry = country(countries, this),
+      p = d3.geo.centroid(focusedCountry);
+
+      svg.selectAll(".focused").classed("focused", focused = false);
+
+    //Globe rotating
+
+    (function transition() {
+      d3.transition()
+      .duration(2500)
+      .tween("rotate", function() {
+        var r = d3.interpolate(projection.rotate(), [-p[0], -p[1]]);
+        return function(t) {
+          projection.rotate(r(t));
+          svg.selectAll("path").attr("d", path)
+          .classed("focused", function(d, i) { return d.id == focusedCountry.id ? focused = d : false; });
+        };
+      })
+      })();
+    });
+
+    function country(cnt, sel) { 
+      for(var i = 0, l = cnt.length; i < l; i++) {
+        if(cnt[i].id == sel.value) {return cnt[i];}
+      }
+    };
+
+  };
