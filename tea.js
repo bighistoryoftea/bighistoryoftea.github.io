@@ -1,7 +1,7 @@
 $(document).ready(function(){
 setTimeout(function() {
     $('body').addClass('loaded');
-}, 3500);
+}, 500);
 document.onkeydown = function(e){
     switch(e.keyCode){
         case 37:
