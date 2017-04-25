@@ -1,13 +1,13 @@
 
-  var width = 600,
-  height = 500,
+  var width = window.innerWidth/3,
+  height = width,
   sens = 0.25,
   focused;
 
   //Setting projection
 
   var projection = d3.geo.orthographic()
-  .scale(245)
+  .scale(width/2 - 5)
   .rotate([0, 0])
   .translate([width / 2, height / 2])
   .clipAngle(90);
