@@ -187,3 +187,7 @@ select {
   font-size: 14px;
   font-family: sans-serif;
 }
+
+#globecontainer{
+  width: 50%;
+}
