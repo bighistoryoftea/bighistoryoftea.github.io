@@ -1,6 +1,6 @@
 function mainFunction(){
   $("#subtitle").text("Welcome.");
-  $("#text").html("Welcome to the Little Big History of Tea. You may use either the arrow keys on your keyboard (work in progress) or the navigation bar above to explore the site. This site was made ");
+  $("#desc").html("Welcome to the Little Big History of Tea. You may use either the arrow keys on your keyboard (work in progress) or the navigation bar above to explore the site. This site was made ");
 }
 $(document).ready(function(){
 setTimeout(function() {
