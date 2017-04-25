@@ -14,7 +14,7 @@ document.onkeydown = function(e){
         case 40:
             //Down
     }
-}
+};
 });
 /*
   Guide:
@@ -28,7 +28,7 @@ var textParagraphs = [
     $("#subtitle").html("Welcome.");
     $("#text").html("Welcome to the Little Big History of Tea. You may use either the arrow keys on your keyboard (work in progress) or the navigation bar above to explore the site.");
 // }
-$("#default").click(functin(){
+$("#default").click(function(){
   $("#subtitle").text("Welcome.");
   $("#text").html("Welcome to the Little Big History of Tea. You may use either the arrow keys on your keyboard (work in progress) or the navigation bar above to explore the site.");
 
