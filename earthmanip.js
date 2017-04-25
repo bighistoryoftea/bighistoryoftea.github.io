@@ -17,7 +17,7 @@
 
   //SVG container
 
-  var svg = d3.select("body").append("svg")
+  var svg = d3.select("#globecontainer").append("svg")
   .attr("width", width)
   .attr("height", height);
 
