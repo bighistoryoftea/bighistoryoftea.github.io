@@ -8,15 +8,25 @@
   </head>
   <body>
     <div class="navbar-fixed ">
-      <nav class="green darken-1">
+      <nav class="green lighten-1">
         <div class="nav-wrapper">
-          <ul class = "left">
+          <a href = "#" id = "defaultbutton">Tea</a>
+          <ul class = "right">
+            <li>
+              <a href="" data-activates='origins_and_trade_dropdown'>Origins and Trade</a>
 
+            </li>
           </ul>
         </div>
+        <ul id="origins_and_trade_dropdown">
+          <li><a onclick="goToPosition(0);">China and East Asia</a></li>
+          <li><a onclick="goToPosition(1);">Physical Properties</a></li>
+          <li><a onclick="goToPosition(2);">Tea in the Modern Era</a></li>
+        </ul>
       </nav>
     </div>
-    <h1 class = "center-align light">Tea.</h1>
+    <h1 class = "left-align light">Tea.</h1>
+    <h4 id = "subtitle" class="light"></h4>
     <center>
       <div class="row">
         <div class="">
@@ -24,6 +34,9 @@
             src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
             crossorigin="anonymous"></script>
+            <script src = "tea.js">
+
+            </script>
             <script src="http://d3js.org/d3.v3.min.js"></script>
             <script src="http://d3js.org/topojson.v1.min.js"></script>
             <script src="http://d3js.org/queue.v1.min.js"></script>

@@ -24,3 +24,12 @@ document.onkeydown = function(e){
 var textParagraphs = [
   [0,"<p>Hello! Press the <strong>right key</strong> to continue onto the first section (Origins of Tea).</p>"],
 ];
+// function default(){
+    $("#subtitle").html("Welcome.");
+    $("#text").html("Welcome to the Little Big History of Tea. You may use either the arrow keys on your keyboard (work in progress) or the navigation bar above to explore the site.");
+// }
+$("#default").click(functin(){
+  $("#subtitle").text("Welcome.");
+  $("#text").html("Welcome to the Little Big History of Tea. You may use either the arrow keys on your keyboard (work in progress) or the navigation bar above to explore the site.");
+
+});
