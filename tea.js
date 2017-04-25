@@ -19,8 +19,8 @@ document.onkeydown = function(e){
             //Down
     }
 };
-});
 mainFunction();
+});
 /*
   Guide:
   Paragraph 0 - Introduction and Guide
