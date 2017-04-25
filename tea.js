@@ -1,3 +1,7 @@
+function mainFunction(){
+  $("#subtitle").text("Welcome.");
+  $("#text").html("Welcome to the Little Big History of Tea. You may use either the arrow keys on your keyboard (work in progress) or the navigation bar above to explore the site. This site was made ");
+}
 $(document).ready(function(){
 setTimeout(function() {
     $('body').addClass('loaded');
@@ -16,6 +20,7 @@ document.onkeydown = function(e){
     }
 };
 });
+mainFunction();
 /*
   Guide:
   Paragraph 0 - Introduction and Guide
@@ -26,10 +31,9 @@ var textParagraphs = [
 ];
 // function default(){
     $("#subtitle").html("Welcome.");
-    $("#text").html("Welcome to the Little Big History of Tea. You may use either the arrow keys on your keyboard (work in progress) or the navigation bar above to explore the site.");
+    $("#text").html("Welcome to the Little Big History of Tea. You may use either the arrow keys on your keyboard (work in progress) or the navigation bar above to explore the site. Project by: Isaac Addis, Sean Sng, Nathaniel Ventura, and Coleman Christy.");
 // }
 $("#default").click(function(){
-  $("#subtitle").text("Welcome.");
-  $("#text").html("Welcome to the Little Big History of Tea. You may use either the arrow keys on your keyboard (work in progress) or the navigation bar above to explore the site.");
+  mainFunction();
 
 });
