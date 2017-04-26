@@ -7,9 +7,11 @@ function goToPosition(n){
   if(n==0){
     mainFunction();
     globalInt = 0;
+    $("#subtitle").addClass("black-text");
   }
   if(n==1){
     $("#subtitle").text("China and East Asia");
+    $("#subtitle").addClass("green-text ");
     $("#desc").text(textParagraphs[0][1]);
     globalInt = 1;
   }
