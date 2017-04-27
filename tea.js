@@ -4,47 +4,69 @@ function mainFunction() {
     $("#desc").text("Welcome to the Little Big History of Tea. You may use either the arrow keys on your keyboard (work in progress) or the navigation bar above to explore the site. Project by: Isaac Addis, Sean Sng, Nathaniel Ventura, and Coleman Christy.");
 }
 function goToPosition(n){
+  n = parseInt(n);
   if(n==0){
     mainFunction();
     globalInt = 0;
-    $("#subtitle").addClass("black-text");
+    $("#subtitle").removeClass("green-text");
   }
   if(n==1){
     $("#subtitle").text("China and East Asia");
     $("#subtitle").removeClass("black-text");
+
+    $("#subtitle").addClass("green-text");
     // $("#desc").addClass("animated bounceOutLeft");
     $("#desc").text(textParagraphs[0][1]);
     globalInt = 1;
   }
   if(n==2){
-    $("#subtitle").text("Tea in the Modern Era");
+    $("#subtitle").text("European Use and Trade of Tea");
     $("#desc").text(textParagraphs[1][1]);
+
+    $("#subtitle").addClass("green-text");
     globalInt = 2;
   }
   if(n==3){
-    $("#subtitle").text("Harvesting and production of tea");
+    $("#subtitle").text("Tea in the Modern Era");
+
+    $("#subtitle").addClass("green-text");
     $("#desc").text(textParagraphs[2][1]);
     globalInt = 3;
   }
   if(n==4){
-    $("#subtitle").text("The Chemical Compounds of Tea");
+    $("#subtitle").text("Harvesting and Production of Tea");
+
+    $("#subtitle").addClass("green-text");
     $("#desc").text(textParagraphs[3][1]);
     globalInt = 4;
   }
   if(n==5){
-    $("#subtitle").text("How people are affected by tea");
+    $("#subtitle").text("The Chemical Compounds of Tea");
+
+    $("#subtitle").addClass("green-text");
     $("#desc").text(textParagraphs[4][1]);
     globalInt = 5;
   }
   if(n==6){
-    $("#subtitle").text("Chinese Methods of Tea Preparation");
+    $("#subtitle").text("How people are Affected by Tea");
+
+    $("#subtitle").addClass("green-text");
     $("#desc").text(textParagraphs[5][1]);
     globalInt = 6;
   }
   if(n==7){
-    $("#subtitle").text("Tea across the World");
+    $("#subtitle").text("Chinese Methods of Tea Preparation");
+
+    $("#subtitle").addClass("green-text");
     $("#desc").text(textParagraphs[6][1]);
     globalInt = 7;
+  }
+  if(n==8){
+    $("#subtitle").text("Tea Across the World");
+
+    $("#subtitle").addClass("green-text");
+    $("#desc").text(textParagraphs[7][1]);
+    globalInt = 8;
   }
 }
 function incPosition(){
@@ -100,10 +122,34 @@ var textParagraphs = [
 ];
 /*
     HTML Manip
-// */
-// $('#zero').click(function({
-//   goToPosition(0);
-// }));
+*/
+$("#defaultbutton").click(function() {
+  goToPosition(0);
+});
+$("#0").click(function() {
+  goToPosition(1);
+});
+$("#1").click(function() {
+  goToPosition(2);
+});
+$("#2").click(function() {
+  goToPosition(3);
+});
+$("#3").click(function() {
+  goToPosition(4);
+});
+$("#4").click(function() {
+  goToPosition(5);
+});
+$("#5").click(function() {
+  goToPosition(6);
+});
+$("#6").click(function() {
+  goToPosition(7);
+});
+$("#7").click(function() {
+  goToPosition(8);
+});
 /*
   Library Functions
 )
