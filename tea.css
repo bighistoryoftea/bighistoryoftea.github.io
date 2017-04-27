@@ -191,6 +191,9 @@ select {
 #globecontainer{
   width: 50%;
 }
-#desc, svg{
+#desc{
   padding-right: 15%;
+}
+svg{
+  padding-left: 15%;
 }
