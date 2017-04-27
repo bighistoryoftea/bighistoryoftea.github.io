@@ -130,3 +130,5 @@
     };
 
   };
+
+document.onmousedown = function(){rotate([20,64]);};
