@@ -1,5 +1,5 @@
 
-  var width = window.innerWidth/3,
+  var width = (window.innerWidth < window.innerHeight ? window.innerWidth/3 : window.innerHeight/2)
   height = width,
   sens = 0.25,
   focused;
