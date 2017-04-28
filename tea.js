@@ -68,8 +68,10 @@ function goToPosition(n){
     $("#desc").text(textParagraphs[7][1]);
     globalInt = 8;
   }
-  if(textParagraphs[n-1][2]){
+  if(textParagraphs[n-1]){
+      if(textParagraphs[n-1][2]){
       rotateToCountry(textParagraphs[n-1][2]);
+      }
   }
 }
 function incPosition(){
