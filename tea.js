@@ -68,6 +68,9 @@ function goToPosition(n){
     $("#desc").text(textParagraphs[7][1]);
     globalInt = 8;
   }
+  if(textParagraphs[n-1][2]){
+      RotateToCountry(textParagraphs[n-1][2]);
+  }
 }
 function incPosition(){
   globalInt = globalInt+1;
@@ -113,13 +116,13 @@ $(document).ready(function() {
     Where all the content is
 */
 var textParagraphs = [
-    [0, "China and East Asia"],
-    [1, "European Use and the Trade of Tea"],
+    [0, "China and East Asia",156],
+    [1, "European Use and the Trade of Tea",826],
     [2, "Tea in the Modern Era"],
     [3,"Harvesting and production of tea"],
     [4,"The chemical compounds of tea"],
     [5,"How people are affected by tea"]
-    [6,"Chinese Methods of Tea Preparation"],
+    [6,"Chinese Methods of Tea Preparation",156],
     [7,"Tea across the World."]
 ];
 /*
