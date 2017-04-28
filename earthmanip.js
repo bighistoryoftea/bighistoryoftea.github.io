@@ -37,8 +37,8 @@
     svg.selectAll(".focused").classed("focused", focused = false);
   }));
 
-  var countryTooltip = d3.select("body").append("div").attr("class", "countryTooltip"),
-  countryList = d3.select("body").append("select").attr("name", "countries");
+  //var countryTooltip = d3.select("body").append("div").attr("class", "countryTooltip"),
+  //countryList = d3.select("body").append("select").attr("name", "countries");
 
 
   queue()
@@ -57,7 +57,7 @@
 
     countryData.forEach(function(d) {
       countryById[d.id] = d.name;
-      option = countryList.append("option");
+      //option = countryList.append("option");
       option.text(d.name);
       option.property("value", d.id);
     });
@@ -132,4 +132,10 @@
 
   };
 
-document.onmousedown = function(){projection.rotate();};
+function rotateToCountry(count){
+  var rotate = projection.rotate(),
+      focusedCountry = country(countries,count),
+      p = d3.geo.centroid(focusedCountry);
+  svg.selectAll(".focused").classed("focused", focused = false);
+  transition();
+};
