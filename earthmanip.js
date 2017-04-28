@@ -134,8 +134,12 @@
 
 function rotateToCountry(count){
   var rotate = projection.rotate(),
-      focusedCountry = country(countries,count),
-      p = d3.geo.centroid(focusedCountry);
+      focusedCountry = function(cnt, sel){
+        for(var i = 0, l = cnt.length; i < l; i++) {
+        if(cnt[i].id == sel) {return cnt[i];}
+      }
+      },
+      p = d3.geo.centroid(focusedCountry(countries,count));
   svg.selectAll(".focused").classed("focused", focused = false);
   transition();
 };
