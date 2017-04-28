@@ -19,7 +19,8 @@
 
   var svg = d3.select("#globecontainer").append("svg")
   .attr("width", width)
-  .attr("height", height);
+  .attr("height", height)
+  .attr("id", "globe");
 
   //Adding water
 
@@ -131,4 +132,4 @@
 
   };
 
-document.onmousedown = function(){rotate([20,64]);};
+document.onmousedown = function(){projection.rotate();};
