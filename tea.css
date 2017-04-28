@@ -188,6 +188,11 @@ select {
   font-family: sans-serif;
 }
 
+#globe{
+  position: relative;
+  right: 0px;
+}
+
 #globecontainer{
   width: 50%;
 }
