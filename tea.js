@@ -69,7 +69,7 @@ function goToPosition(n){
     globalInt = 8;
   }
   if(textParagraphs[n-1][2]){
-      RotateToCountry(textParagraphs[n-1][2]);
+      rotateToCountry(textParagraphs[n-1][2]);
   }
 }
 function incPosition(){
