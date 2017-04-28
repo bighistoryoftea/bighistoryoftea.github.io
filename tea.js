@@ -97,12 +97,14 @@ $(document).ready(function() {
             case 38:
                 //Up
                 incPosition();
+                e.preventDefault();
             case 39:
                 // Right
                 incPosition();
             case 40:
                 //Down
                 decPosition();
+                e.preventDefault();
         }
     };
 });
