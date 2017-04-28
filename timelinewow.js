@@ -59,8 +59,10 @@ var events = [
   )
   
 ];
-var fontSize = document.getElementById("timelinecont").offsetHeight/4;
+
+document.onload = function(){
 var font = function(){
+  var fontSize = document.getElementById("timelinecont").offsetHeight/4;
 var timeline = document.getElementsByClassName("timeline");
 for(i=0; i<timeline.length; i++){
 timeline[i].style.fontSize = fontSize + "px";
@@ -93,3 +95,4 @@ for(i=0;i<events.length;i++){
   y.style.color = events[i].color;
   y.style.borderLeft = "4px solid " + events[i].color;
 }
+};
