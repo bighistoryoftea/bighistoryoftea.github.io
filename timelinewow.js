@@ -17,8 +17,8 @@ color = "#HEXVAL"
 var events = [
   //New events go here in chronological order
   new data(
-  [1,0,2],
-  "dasfasaf fds",
+  [1,0,3],
+  "test a theory",
   "#FD5458",
     function(){test();}
   ),
@@ -60,7 +60,7 @@ var events = [
   
 ];
 
-document.onload = function(){
+
 var font = function(){
   var fontSize = document.getElementById("timelinecont").offsetHeight/4;
 var timeline = document.getElementsByClassName("timeline");
@@ -95,4 +95,3 @@ for(i=0;i<events.length;i++){
   y.style.color = events[i].color;
   y.style.borderLeft = "4px solid " + events[i].color;
 }
-};
